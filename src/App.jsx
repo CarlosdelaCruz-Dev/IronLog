@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { supabase } from './lib/supabase'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
-import WorkoutDetail from './pages/WorkoutDetail' // <-- Nueva página
+import WorkoutDetail from './pages/WorkoutDetail'
+import ProgressCharts from './components/ProgressCharts' // <-- Importamos los gráficos
 
 function App() {
   const [session, setSession] = useState(null)
@@ -31,8 +32,9 @@ function App() {
       <Routes>
         <Route path="/login" element={!session ? <Login /> : <Navigate to="/" />} />
         <Route path="/" element={session ? <Dashboard session={session} /> : <Navigate to="/login" />} />
-        {/* Nueva ruta dinámica para ver el detalle de cada entrenamiento */}
         <Route path="/workout/:id" element={session ? <WorkoutDetail session={session} /> : <Navigate to="/login" />} />
+        {/* Nueva ruta para las estadísticas */}
+        <Route path="/progress" element={session ? <ProgressCharts session={session} /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   )
