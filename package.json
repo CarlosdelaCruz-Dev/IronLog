@@ -13,6 +13,7 @@
     "@supabase/supabase-js": "^2.116.0",
     "lucide-react": "^1.50.0",
     "react": "^19.2.8",
+    "react-body-highlighter": "^2.0.5",
     "react-dom": "^19.2.8",
     "react-is": "^19.3.0",
     "react-router-dom": "^7.18.3",
@@ -27,6 +28,7 @@
     "oxlint": "^1.79.0",
     "postcss": "^8.5.28",
     "tailwindcss": "^4.3.3",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "vite-plugin-pwa": "^2.0.0"
   }
 }
