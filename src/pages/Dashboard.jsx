@@ -114,6 +114,22 @@ export default function Dashboard({ session }) {
             <p className="text-cyan-600 text-xs font-mono uppercase tracking-widest hidden sm:block">
               Usuario: <span className="text-cyan-300 font-bold drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">{formattedName}</span>
             </p>
+
+            <button 
+              onClick={async () => {
+                const newPassword = window.prompt("SISTEMA: Ingresa tu nueva clave de acceso (mínimo 6 caracteres):");
+                if (newPassword) {
+                  if (newPassword.length < 6) return alert("Error: La clave debe tener al menos 6 caracteres.");
+                  const { error } = await supabase.auth.updateUser({ password: newPassword });
+                  if (error) alert("Error del Sistema: " + error.message);
+                  else alert("SISTEMA: Clave de acceso actualizada exitosamente.");
+                }
+              }}
+              className="px-4 py-2 border border-emerald-900/50 bg-emerald-950/20 hover:bg-emerald-900/40 hover:border-emerald-500/50 text-emerald-400 text-xs font-mono uppercase tracking-widest transition-all shadow-[0_0_10px_rgba(16,185,129,0.1)]"
+            >
+              ⚙️ Cambiar Clave
+            </button>
+            
             <button 
               onClick={() => supabase.auth.signOut()}
               className="px-4 py-2 border border-red-900/50 bg-red-950/20 hover:bg-red-900/40 hover:border-red-500/50 text-red-400 text-xs font-mono uppercase tracking-widest transition-all shadow-[0_0_10px_rgba(239,68,68,0.1)]"
